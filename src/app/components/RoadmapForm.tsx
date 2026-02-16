@@ -11,6 +11,13 @@ const initialState: CreateRoadmapState = {
   message: "",
   status: 0,
   errors: {},
+  values: {
+    gitHubOwner: "",
+    gitHubRepositoryName: "",
+    gitHubToken: "",
+    apiDomainDefinition: "",
+    openAIKey: "",
+  },
 };
 
 function getFieldError(
@@ -47,6 +54,7 @@ export default function RoadmapForm() {
             fullWidth
             label="GitHub Username"
             variant="outlined"
+            defaultValue={state.values?.gitHubOwner}
             error={!!getFieldError(state.errors, "GitHubOwner")}
             helperText={getFieldError(state.errors, "GitHubOwner")}
           />
@@ -57,6 +65,7 @@ export default function RoadmapForm() {
             fullWidth
             label="GitHub Repository name"
             variant="outlined"
+            defaultValue={state.values?.gitHubRepositoryName}
             error={!!getFieldError(state.errors, "GitHubRepositoryName")}
             helperText={getFieldError(state.errors, "GitHubRepositoryName")}
           />
@@ -67,6 +76,7 @@ export default function RoadmapForm() {
             fullWidth
             label="GitHub token"
             variant="outlined"
+            defaultValue={state.values?.gitHubToken}
             error={!!getFieldError(state.errors, "GitHubToken")}
             helperText={getFieldError(state.errors, "GitHubToken")}
           />
@@ -77,6 +87,7 @@ export default function RoadmapForm() {
             fullWidth
             label="API domain definition"
             variant="outlined"
+            defaultValue={state.values?.apiDomainDefinition}
             error={!!getFieldError(state.errors, "ApiDomainDefinition")}
             helperText={getFieldError(state.errors, "ApiDomainDefinition")}
           />
@@ -87,6 +98,7 @@ export default function RoadmapForm() {
             fullWidth
             label="OpenAI Key"
             variant="outlined"
+            defaultValue={state.values?.openAIKey}
             error={!!getFieldError(state.errors, "OpenAIKey")}
             helperText={getFieldError(state.errors, "OpenAIKey")}
           />

@@ -7,6 +7,13 @@ export interface CreateRoadmapState {
   message: string;
   status: number;
   errors: Record<string, string[]>;
+  values: {
+    gitHubOwner: string;
+    gitHubRepositoryName: string;
+    gitHubToken: string;
+    apiDomainDefinition: string;
+    openAIKey: string;
+  };
 }
 
 export async function createRoadmap(
@@ -27,5 +34,12 @@ export async function createRoadmap(
     message: response.message,
     status: response.status,
     errors: response.errors,
+    values: {
+      gitHubOwner: request.gitHubOwner ?? "",
+      gitHubRepositoryName: request.gitHubRepositoryName ?? "",
+      gitHubToken: request.gitHubToken ?? "",
+      apiDomainDefinition: request.apiDomainDefinition ?? "",
+      openAIKey: request.openAIKey ?? "",
+    },
   };
 }
