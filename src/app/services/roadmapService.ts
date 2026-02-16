@@ -16,10 +16,15 @@ export default class RoadmapService implements IRoadmapService {
           },
         },
       );
+      const data = response.data;
       return new RoadmapResponse(
         "Roadmap successfully created",
         response.status,
         {},
+        data.projectId,
+        data.milestonesCreatedCount,
+        data.issuesCreatedCount,
+        data.readmeCreated,
       );
     } catch (e: unknown) {
       const error = e as AxiosError<any>;

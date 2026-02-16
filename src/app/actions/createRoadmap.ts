@@ -3,10 +3,18 @@
 import RoadmapRequest from "../models/roadmapRequest";
 import RoadmapService from "../services/roadmapService";
 
+export interface CreateRoadmapResult {
+  projectId: string;
+  milestonesCreatedCount: number;
+  issuesCreatedCount: number;
+  readmeCreated: boolean;
+}
+
 export interface CreateRoadmapState {
   message: string;
   status: number;
   errors: Record<string, string[]>;
+  result?: CreateRoadmapResult;
   values: {
     gitHubOwner: string;
     gitHubRepositoryName: string;
@@ -34,6 +42,14 @@ export async function createRoadmap(
     message: response.message,
     status: response.status,
     errors: response.errors,
+    result: response.projectId
+      ? {
+          projectId: response.projectId,
+          milestonesCreatedCount: response.milestonesCreatedCount!,
+          issuesCreatedCount: response.issuesCreatedCount!,
+          readmeCreated: response.readmeCreated!,
+        }
+      : undefined,
     values: {
       gitHubOwner: request.gitHubOwner ?? "",
       gitHubRepositoryName: request.gitHubRepositoryName ?? "",

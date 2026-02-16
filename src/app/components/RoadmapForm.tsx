@@ -1,7 +1,16 @@
 "use client";
 
 import { useActionState } from "react";
-import { Button, Grid, TextField, Alert } from "@mui/material";
+import {
+  Button,
+  Grid,
+  TextField,
+  Alert,
+  Typography,
+  List,
+  ListItem,
+  ListItemText,
+} from "@mui/material";
 import {
   createRoadmap,
   CreateRoadmapState,
@@ -43,9 +52,27 @@ export default function RoadmapForm() {
             <Alert severity="error">{state.message}</Alert>
           </Grid>
         )}
-        {state.status === 200 && (
+        {state.result && (
           <Grid size={12}>
-            <Alert severity="success">{state.message}</Alert>
+            <Alert severity="success">
+              <Typography variant="subtitle1" fontWeight="bold">
+                {state.message}
+              </Typography>
+              <List dense>
+                <ListItem>
+                  <ListItemText primary={`Project ID: ${state.result.projectId}`} />
+                </ListItem>
+                <ListItem>
+                  <ListItemText primary={`Milestones created: ${state.result.milestonesCreatedCount}`} />
+                </ListItem>
+                <ListItem>
+                  <ListItemText primary={`Issues created: ${state.result.issuesCreatedCount}`} />
+                </ListItem>
+                <ListItem>
+                  <ListItemText primary={`README created: ${state.result.readmeCreated ? "Yes" : "No"}`} />
+                </ListItem>
+              </List>
+            </Alert>
           </Grid>
         )}
         <Grid size={12}>
