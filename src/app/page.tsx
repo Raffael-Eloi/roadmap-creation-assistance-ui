@@ -1,15 +1,17 @@
-import { Box, Container, Grid, TextField } from "@mui/material";
+import { Button, Container, Grid, TextField, Typography } from "@mui/material";
 
 export default function Home() {
   return (
     <Container maxWidth="sm">
-      <h3>Roadmap Creation Assistance</h3>
+      <Typography variant="h5" gutterBottom textAlign={"center"}>
+        Roadmap Creation Assistance
+      </Typography>
       <Grid container spacing={2} rowSpacing={2}>
         <Grid size={12}>
           <TextField
             id="outlined-basic"
             fullWidth
-            label="GitHub owner (GitHub Username)"
+            label="GitHub Username"
             variant="outlined"
           />
         </Grid>
@@ -17,7 +19,7 @@ export default function Home() {
           <TextField
             id="outlined-basic"
             fullWidth
-            label="GitHub repository name"
+            label="GitHub Repository name"
             variant="outlined"
           />
         </Grid>
@@ -36,6 +38,9 @@ export default function Home() {
             label="API domain definition"
             variant="outlined"
           />
+        </Grid>
+        <Grid size={12}>
+          <Button variant="contained">Create Roadmap</Button>
         </Grid>
       </Grid>
     </Container>
