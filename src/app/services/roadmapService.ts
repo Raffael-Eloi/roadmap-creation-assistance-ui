@@ -1,0 +1,40 @@
+import { AxiosError, AxiosResponse } from "axios";
+import IRoadmapService from "../contracts/iRoadmapService";
+import RoadmapRequest from "../models/roadmapRequest";
+import { api } from "../utils/api";
+import RoadmapResponse from "../models/RoadmapResponse";
+
+export default class RoadmapService implements IRoadmapService {
+  public async create(request: RoadmapRequest): Promise<RoadmapResponse> {
+    try {
+      const response: AxiosResponse<RoadmapResponse> = await api.post(
+        "/api/RoadMapGenerator",
+        request,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        },
+      );
+      return new RoadmapResponse(
+        "Roadmap successfully created",
+        response.status,
+        {},
+      );
+    } catch (e: unknown) {
+      const error = e as AxiosError<any>;
+      if (error.response?.data) {
+        return new RoadmapResponse(
+          error.response.data.title,
+          error.response.status,
+          error.response.data.errors,
+        );
+      }
+      return new RoadmapResponse(
+        "An error ocurred.",
+        error.response?.status ?? 422,
+        {},
+      );
+    }
+  }
+}
