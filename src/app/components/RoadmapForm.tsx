@@ -43,6 +43,35 @@ export default function RoadmapForm() {
   >(createRoadmap, initialState);
 
   const hasErrors = Object.keys(state.errors ?? {}).length > 0;
+  const isSuccess = !!state.result;
+
+  if (isSuccess) {
+    return (
+      <Grid container spacing={2} rowSpacing={2}>
+        <Grid size={12}>
+          <Alert severity="success">
+            <Typography variant="subtitle1" fontWeight="bold">
+              {state.message}
+            </Typography>
+            <List dense>
+              <ListItem>
+                <ListItemText primary={`Project ID: ${state.result!.projectId}`} />
+              </ListItem>
+              <ListItem>
+                <ListItemText primary={`Milestones created: ${state.result!.milestonesCreatedCount}`} />
+              </ListItem>
+              <ListItem>
+                <ListItemText primary={`Issues created: ${state.result!.issuesCreatedCount}`} />
+              </ListItem>
+              <ListItem>
+                <ListItemText primary={`README created: ${state.result!.readmeCreated ? "Yes" : "No"}`} />
+              </ListItem>
+            </List>
+          </Alert>
+        </Grid>
+      </Grid>
+    );
+  }
 
   return (
     <form action={formAction}>
@@ -50,29 +79,6 @@ export default function RoadmapForm() {
         {hasErrors && (
           <Grid size={12}>
             <Alert severity="error">{state.message}</Alert>
-          </Grid>
-        )}
-        {state.result && (
-          <Grid size={12}>
-            <Alert severity="success">
-              <Typography variant="subtitle1" fontWeight="bold">
-                {state.message}
-              </Typography>
-              <List dense>
-                <ListItem>
-                  <ListItemText primary={`Project ID: ${state.result.projectId}`} />
-                </ListItem>
-                <ListItem>
-                  <ListItemText primary={`Milestones created: ${state.result.milestonesCreatedCount}`} />
-                </ListItem>
-                <ListItem>
-                  <ListItemText primary={`Issues created: ${state.result.issuesCreatedCount}`} />
-                </ListItem>
-                <ListItem>
-                  <ListItemText primary={`README created: ${state.result.readmeCreated ? "Yes" : "No"}`} />
-                </ListItem>
-              </List>
-            </Alert>
           </Grid>
         )}
         <Grid size={12}>
