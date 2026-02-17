@@ -207,6 +207,16 @@ export default function RoadmapForm() {
             />
           </Grid>
 
+          {pending && (
+            <Grid size={12}>
+              <Alert severity="info">
+                This may take a few minutes as we communicate with the OpenAI
+                API to generate your milestones and issues. Please don't close
+                this page.
+              </Alert>
+            </Grid>
+          )}
+
           <Grid size={12}>
             <Box sx={{ display: "flex", justifyContent: "center", mt: 1 }}>
               <Button
