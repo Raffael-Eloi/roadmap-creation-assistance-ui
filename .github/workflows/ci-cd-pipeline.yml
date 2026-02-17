@@ -22,6 +22,7 @@ jobs:
         uses: actions/checkout@v4
       - run: |
           npm install
+          npm run build
 
   pushImageToDockerHub:
     name: Push Image to Docker Hub
