@@ -74,6 +74,19 @@ export default function RoadmapForm() {
                 primary={`README created: ${state.result!.readmeCreated ? "Yes" : "No"}`}
               />
             </ListItem>
+            <ListItem>
+              <ListItemText
+                primary={
+                  <a
+                    href={`https://github.com/${state.values?.gitHubOwner}/${state.values?.gitHubRepositoryName}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Check it out on GitHub
+                  </a>
+                }
+              />
+            </ListItem>
           </List>
         </Alert>
       </Paper>
