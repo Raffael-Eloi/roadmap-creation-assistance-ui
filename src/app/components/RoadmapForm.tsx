@@ -43,7 +43,10 @@ export default function RoadmapForm() {
     FormData
   >(createRoadmap, initialState);
 
-  const hasErrors = Object.keys(state.errors ?? {}).length > 0;
+  const statusErrors = [400, 401, 422, 500];
+  const hasErrors =
+    Object.keys(state.errors ?? {}).length > 0 ||
+    statusErrors.includes(state.status);
   const isSuccess = !!state.result;
 
   if (isSuccess) {
@@ -186,7 +189,7 @@ export default function RoadmapForm() {
               error={!!getFieldError(state.errors, "ApiDomainDefinition")}
               helperText={
                 getFieldError(state.errors, "ApiDomainDefinition") ||
-                "A brief description of your project's domain. The more detail you provide, the better the roadmap."
+                "A brief description of your project's domain."
               }
             />
           </Grid>

@@ -28,9 +28,13 @@ export default class RoadmapService implements IRoadmapService {
       );
     } catch (e: unknown) {
       const error = e as AxiosError<any>;
+      console.log("error", error);
+      console.log("error.response", error.response);
+      console.log("error.response?.data", error.response?.data);
+
       if (error.response?.data) {
         return new RoadmapResponse(
-          error.response.data.title,
+          error.response.data.title ?? error.response.data.message,
           error.response.status,
           error.response.data.errors,
         );
