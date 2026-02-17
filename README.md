@@ -1,36 +1,59 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Roadmap Creation Assistance UI
+
+Web interface for [Roadmap Creation Assistance](https://github.com/Raffael-Eloi/roadmap-creation-assistance) — an AI-powered tool that turns any project idea into a structured learning roadmap with GitHub milestones and issues.
+
+## What it does
+
+This frontend provides a simple form where you enter your GitHub details, an OpenAI API key, and a short project description. It then communicates with the backend API to automatically generate a complete roadmap in your GitHub repository, organized into:
+
+- **Milestones** — Big-picture learning goals (e.g., "Programming Languages & Execution Model Fundamentals")
+- **Issues** categorized as:
+  - `[TECH]` — Technical implementation tasks
+  - `[ME]` — Mindset Evolution reflections
+  - `[HO]` — Hands-On practical challenges
+
+## Preview
+
+// To be added
+
+## Prerequisites
+
+- [Node.js](https://nodejs.org/) 20+
+- The [Roadmap Creation Assistance API](https://github.com/Raffael-Eloi/roadmap-creation-assistance) running locally or deployed
 
 ## Getting Started
 
-First, run the development server:
+Install dependencies and run the development server:
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+By default, the app expects the backend API at `http://localhost:5135`. This is configured in `.env.development`.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Tech Stack
 
-## Learn More
+- [Next.js](https://nextjs.org/) 16 (App Router)
+- [React](https://react.dev/) 19
+- [Material UI](https://mui.com/) 7
+- [TypeScript](https://www.typescriptlang.org/) 5
+- [Axios](https://axios-http.com/) for HTTP requests
 
-To learn more about Next.js, take a look at the following resources:
+## Deployment
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+The project includes a multi-stage Dockerfile and a GitHub Actions CI/CD pipeline that:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. Builds the application
+2. Pushes a Docker image to Docker Hub
+3. Deploys to Azure Container Apps
 
-## Deploy on Vercel
+## Related
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- [Roadmap Creation Assistance (Backend API)](https://github.com/Raffael-Eloi/roadmap-creation-assistance)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## License
+
+MIT
